@@ -16,7 +16,7 @@ st.set_page_config(
     page_icon="🎨",
 )
 
-model = tf.keras.models.load_model("vgg19_model.h5")
+model = tf.keras.models.load_model("model.h5")
 
 map_dict = {0: 'AI Generated Image',
             1: 'Human Made',
