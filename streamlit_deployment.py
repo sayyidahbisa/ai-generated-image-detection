@@ -80,3 +80,6 @@ def main():
     if Generate_pred:
       prediction = model.predict(img_file).argmax()
       st.title("Predicted Label for the image is {}".format(map_dict [prediction]))
+        
+if __name__ == '__main__':
+    main()
