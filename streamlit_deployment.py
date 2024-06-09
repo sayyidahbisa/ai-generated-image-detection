@@ -13,25 +13,19 @@ from tensorflow.keras.losses import BinaryCrossentropy
 
 st.set_page_config(
     page_title="AI Generated Image",
-    page_icon="🖼️",
+     page_icon="🖼️",
 )
 
 model = tf.keras.models.load_model("model.h5")
 
 map_dict = {0: 'AI Generated Image',
-            1: 'Human Made'}
-
-def preprocess_image(image):
-    """Preprocess the image to the format required by the model"""
-    resized = image.resize((224, 224))  # Resize the image to the input shape expected by the model
-    image_array = np.array(resized)  # Convert image to numpy array
-    if image_array.ndim == 2:
-        image_array = np.stack((image_array,) * 3, axis=-1)  # Convert grayscale to RGB if needed
-    image_array = image_array / 255.0  # Normalize pixel values
-    image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
-    return image_array
+            1: 'Human Made',
+            }
 
 def main():
+    img = None
+
+
     st.markdown(
         """
         <style>
@@ -52,6 +46,7 @@ def main():
         unsafe_allow_html=True
     )
 
+
     st.markdown(
         "<h1 class='rounded-heading'>AI Generated Detection</h1>", 
         unsafe_allow_html=True)
@@ -60,34 +55,39 @@ def main():
         "<h3 style='text-align: center; color: #ff6f61; text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.07);'>🎨 AI Image Generated Detection</h3><br>", 
         unsafe_allow_html=True)
 
-    upload_tab, url_tab = st.tabs(["Upload", "Image URL"])
-    img = None
 
+
+    upload_tab, url_tab = st.tabs(["Upload", "Image URL"])
     with upload_tab:
+
         img_file = st.file_uploader("Upload an image", key="file_uploader", type=["jpg", "jpeg", "png"])
         if img_file is not None:
-            img = Image.open(img_file).convert("RGB")
-            st.image(img, caption='Uploaded Image.', use_column_width=True)
+            file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+            opencv_image = cv2.imdecode(file_bytes, 1)
+            opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
+            resized = cv2.resize(opencv_image,(224,224))
+            # Now do something with the image! For example, let's display it:
+            st.image(opencv_image, channels="RGB")
+    if st.session_state.get("image_url"):
+            st.warning("To use the file uploader, remove the image URL first.")
 
     with url_tab:
+
         url = st.text_input("Image URL", key="image_url")
         if url != "":
             try:
                 response = requests.get(url)
                 img = Image.open(BytesIO(response.content)).convert("RGB")
-                st.image(img, caption='Image from URL.', use_column_width=True)
             except:
                 st.error("The URL is not valid.")
-
-    if img is not None:
-        img_array = preprocess_image(img)
-        Generate_pred = st.button("Generate Prediction")
-        if Generate_pred:
-            try:
-                prediction = model.predict(img_array).argmax()
-                st.title("Predicted Label for the image is {}".format(map_dict[prediction]))
-            except Exception as e:
-                st.error(f"An error occurred during prediction: {e}")
                 
+    resized =img_file(resized)
+    img_reshape = resized[np.newaxis,...]
+    
+    Generate_pred = st.button("Generate Prediction")
+    if Generate_pred:
+      prediction = model.predict(img_reshape).argmax()
+      st.title("Predicted Label for the image is {}".format(map_dict [prediction]))
+        
 if __name__ == '__main__':
     main()
