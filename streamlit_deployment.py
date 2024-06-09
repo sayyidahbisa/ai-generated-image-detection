@@ -55,19 +55,12 @@ def main():
         "<h3 style='text-align: center; color: #ff6f61; text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.07);'>🎨 AI Image Generated Detection</h3><br>", 
         unsafe_allow_html=True)
 
-
-
     upload_tab, url_tab = st.tabs(["Upload", "Image URL"])
     with upload_tab:
 
         img_file = st.file_uploader("Upload an image", key="file_uploader", type=["jpg", "jpeg", "png"])
         if img_file is not None:
-            file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-            opencv_image = cv2.imdecode(file_bytes, 1)
-            opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
-            resized = cv2.resize(opencv_image,(224,224))
-            # Now do something with the image! For example, let's display it:
-            st.image(opencv_image, channels="RGB")
+           img = Image.open(img_file).convert("RGB")
     if st.session_state.get("image_url"):
             st.warning("To use the file uploader, remove the image URL first.")
 
@@ -80,14 +73,6 @@ def main():
                 img = Image.open(BytesIO(response.content)).convert("RGB")
             except:
                 st.error("The URL is not valid.")
-                
-    resized =img_file(resized)
-    img_reshape = resized[np.newaxis,...]
-    
-    Generate_pred = st.button("Generate Prediction")
-    if Generate_pred:
-      prediction = model.predict(img_reshape).argmax()
-      st.title("Predicted Label for the image is {}".format(map_dict [prediction]))
         
 if __name__ == '__main__':
     main()
