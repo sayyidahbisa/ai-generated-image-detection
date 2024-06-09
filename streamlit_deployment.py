@@ -9,10 +9,6 @@ Original file is located at
 import streamlit as st
 from PIL import Image
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.vgg19 import VGG19
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 st.set_page_config(
     page_title="AI Generated Image",
