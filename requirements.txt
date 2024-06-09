@@ -1,6 +1,8 @@
+python
 streamlit
 tensorflow
 matplotlib
 numpy
 pandas
 keras
+binary_crossentropy
