@@ -5,3 +5,4 @@ numpy==1.24.4
 pandas==2.2.0
 keras==2.15.0
 opencv-python==4.5.1.48
+cv2
