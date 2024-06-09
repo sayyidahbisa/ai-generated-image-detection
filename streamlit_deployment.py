@@ -21,10 +21,18 @@ model = tf.keras.models.load_model("model.h5")
 map_dict = {0: 'AI Generated Image',
             1: 'Human Made',
             }
+def preprocess_image(image):
+    """Preprocess the image to the format required by the model"""
+    resized = image.resize((224, 224))  # Resize the image to the input shape expected by the model
+    image_array = np.array(resized)  # Convert image to numpy array
+    if image_array.ndim == 2:
+        image_array = np.stack((image_array,) * 3, axis=-1)  # Convert grayscale to RGB if needed
+    image_array = image_array / 255.0  # Normalize pixel values
+    image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
+    return image_array
 
 def main():
     img = None
-
 
     st.markdown(
         """
@@ -45,7 +53,6 @@ def main():
         """,
         unsafe_allow_html=True
     )
-
 
     st.markdown(
         "<h1 class='rounded-heading'>AI Generated Detection</h1>", 
@@ -73,6 +80,16 @@ def main():
                 img = Image.open(BytesIO(response.content)).convert("RGB")
             except:
                 st.error("The URL is not valid.")
+                
+        if img is not None:
+        img_array = preprocess_image(img)
+        Generate_pred = st.button("Generate Prediction")
+        if Generate_pred:
+            try:
+                prediction = model.predict(img_array).argmax()
+                st.title("Predicted Label for the image is {}".format(map_dict[prediction]))
+            except Exception as e:
+                st.error(f"An error occurred during prediction: {e}")
         
 if __name__ == '__main__':
     main()
