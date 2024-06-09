@@ -4,4 +4,4 @@ matplotlib
 numpy
 pandas
 keras
-binary_crossentropy
+BinaryCrossentropy
