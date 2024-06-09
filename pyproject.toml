@@ -31,11 +31,11 @@ dependencies = [
 config={
 'module': 'keras.losses', 
 'class_name': 'BinaryCrossentropy', 
-'config': {
-'reduction': 'auto', 
-'name': 'binary_crossentropy', 
-'from_logits': False, 
-'label_smoothing': 0.0, 
-'axis': -1, 
-'fn': 'binary_crossentropy'}, 
+    'config': {
+        'reduction': 'auto', 
+        'name': 'binary_crossentropy', 
+        'from_logits': False, 
+        'label_smoothing': 0.0, 
+        'axis': -1, 
+        'fn': 'binary_crossentropy'}, 
 'registered_name': None}.
