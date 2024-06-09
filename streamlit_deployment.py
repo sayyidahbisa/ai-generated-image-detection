@@ -9,9 +9,7 @@ Original file is located at
 import streamlit as st
 from PIL import Image
 import tensorflow as tf
-import numpy as np
-import requests
-from io import BytesIO
+from tensorflow.keras.losses import BinaryCrossentropy
 
 st.set_page_config(
     page_title="AI Generated Image",
