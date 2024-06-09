@@ -6,9 +6,9 @@ build-backend = "setuptools.build_meta"
 name = "ai_generated_image_detection"
 version = "0.0.2"
 authors = [
-    { name = "User Name", email = "username.example.com" },
+    { name = "sayyidahbisa", email = "sayyidahbisabikin@gmail.com" },
 ]
-description = "This package contains code shared by the Quest Maker microservices."
+description = "This package contains code shared by the AI Image Generated Detection."
 readme = "README.md"
 requires-python = ">=3.11"
 classifiers = [
