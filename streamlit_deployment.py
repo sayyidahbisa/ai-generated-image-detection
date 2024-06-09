@@ -62,7 +62,12 @@ def main():
 
         img_file = st.file_uploader("Upload an image", key="file_uploader", type=["jpg", "jpeg", "png"])
         if img_file is not None:
-            img = Image.open(img_file).convert("RGB")
+            file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+            opencv_image = cv2.imdecode(file_bytes, 1)
+            opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
+            resized = cv2.resize(opencv_image,(224,224))
+            # Now do something with the image! For example, let's display it:
+            st.image(opencv_image, channels="RGB")
     if st.session_state.get("image_url"):
             st.warning("To use the file uploader, remove the image URL first.")
 
@@ -76,15 +81,6 @@ def main():
             except:
                 st.error("The URL is not valid.")
                 
-    if uploaded_file is not None:
-        # Convert the file to an opencv image.
-        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-        opencv_image = cv2.imdecode(file_bytes, 1)
-        opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
-        resized = cv2.resize(opencv_image,(224,224))
-        # Now do something with the image! For example, let's display it:
-        st.image(opencv_image, channels="RGB")
-
     resized =img_file(resized)
     img_reshape = resized[np.newaxis,...]
     
