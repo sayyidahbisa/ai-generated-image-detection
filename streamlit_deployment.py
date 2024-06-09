@@ -74,16 +74,18 @@ def main():
     with url_tab:
 
         url = st.text_input("Image URL", key="image_url")
-        if url != "":
-            try:
-                response = requests.get(url)
-                img = Image.open(BytesIO(response.content)).convert("RGB")
-            except:
-                st.error("The URL is not valid.")
+    
+    if url != "":
+        try:
+            response = requests.get(url)
+            img = Image.open(BytesIO(response.content)).convert("RGB")
+        except:
+            st.error("The URL is not valid.")
                 
-        if img is not None:
+    if img is not None:
         img_array = preprocess_image(img)
         Generate_pred = st.button("Generate Prediction")
+        
         if Generate_pred:
             try:
                 prediction = model.predict(img_array).argmax()
