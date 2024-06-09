@@ -9,7 +9,6 @@ Original file is located at
 import streamlit as st
 from PIL import Image
 import numpy as np
-import opencv as cv
 import tensorflow as tf
 from tensorflow.keras.losses import BinaryCrossentropy
 
@@ -30,7 +29,6 @@ def preprocess_image(image):
     image_array = np.array(resized)  # Convert image to numpy array
     image_array = image_array / 255.0  # Normalize pixel values
     image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
-    st.image(opencv_image, channels="RGB")
     return image_array
 
 def main():
