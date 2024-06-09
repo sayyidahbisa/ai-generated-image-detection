@@ -12,7 +12,6 @@ import tensorflow as tf
 import numpy as np
 import requests
 from io import BytesIO
-import cv2
 
 st.set_page_config(
     page_title="AI Generated Image",
