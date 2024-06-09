@@ -9,11 +9,10 @@ Original file is located at
 import streamlit as st
 from PIL import Image
 import tensorflow as tf
-import cv2
 
 st.set_page_config(
     page_title="AI Generated Image",
-    page_icon="🎨",
+     page_icon="🖼️",
 )
 
 model = tf.keras.models.load_model("model.h5")
@@ -75,15 +74,6 @@ def main():
                 img = Image.open(BytesIO(response.content)).convert("RGB")
             except:
                 st.error("The URL is not valid.")
-    
-    if img_file is not None:
-    # Convert the file to an opencv image.
-      file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-      opencv_image = cv2.imdecode(file_bytes, 1)
-      opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
-      resized = cv2.resize(opencv_image,(224,224))
-    # Now do something with the image! For example, let's display it:
-      st.image(opencv_image, channels="RGB")
     
     Generate_pred = st.button("Generate Prediction")
     if Generate_pred:
