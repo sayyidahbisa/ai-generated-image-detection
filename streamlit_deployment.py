@@ -83,7 +83,7 @@ def main():
             st.error("The URL is not valid.")
                 
     if img is not None:
-        img_array = preprocess_image(img)
+        image_array = preprocess_image(img)
         img = Image.open(img_file)
         st.image(image, caption="Uploaded Image.")
     
@@ -93,7 +93,7 @@ def main():
     Generate_pred = st.button("Generate Prediction")
     if Generate_pred:
         try:
-            prediction = model.predict(img_array).argmax()
+            prediction = model.predict(image_array).argmax()
             st.title("Predicted Label for the image is {}".format(map_dict[prediction]))
         except Exception as e:
             st.error(f"An error occurred during prediction: {e}")
