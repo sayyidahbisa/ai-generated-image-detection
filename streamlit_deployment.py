@@ -84,7 +84,7 @@ def main():
     Generate_pred = st.button("Generate Prediction")
     if Generate_pred:
         try:
-            prediction = model.predict(image_array).argmax()
+            prediction = model.predict(img).argmax()
             st.title("Predicted Label for the image is {}".format(map_dict[prediction]))
         except Exception as e:
             st.error(f"An error occurred during prediction: {e}")
