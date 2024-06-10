@@ -84,6 +84,11 @@ def main():
                 
     if img is not None:
         img_array = preprocess_image(img)
+        imag = Image.open(img_file)
+        st.image(image, caption="Uploaded Image.")
+    
+        # Preprocess the image
+        input_data = format_image(img_file)
     
     Generate_pred = st.button("Generate Prediction")
     if Generate_pred:
@@ -108,7 +113,7 @@ medium_markdown = f'[Blog]({medium_url})'
 # Text display
 st.sidebar.subheader('Sayyidah Amalia Rokhimah')
 st.sidebar.markdown(f"{linkedin_markdown} | {github_markdown} | {medium_markdown}", unsafe_allow_html=True)
-st.sidebar.write('dvdhartsman@gmail.com')
+st.sidebar.write('sayyidahbisabikin@gmail.com')
                          
         
 if __name__ == '__main__':
