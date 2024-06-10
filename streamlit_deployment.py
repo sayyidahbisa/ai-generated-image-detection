@@ -85,7 +85,7 @@ def main():
     if img is not None:
         img_array = preprocess_image(img)
         img = Image.open(img_file)
-        st.image(image, caption="Uploaded Image.")
+        st.image(img, caption="Uploaded Image.")
     
         # Preprocess the image
         input_data = format_image(img_file)
