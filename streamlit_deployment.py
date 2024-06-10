@@ -87,9 +87,6 @@ def main():
         img = Image.open(img_file)
         st.image(img, caption="Uploaded Image.")
     
-        # Preprocess the image
-        input_data = format_image(img_file)
-    
     Generate_pred = st.button("Generate Prediction")
     if Generate_pred:
         try:
