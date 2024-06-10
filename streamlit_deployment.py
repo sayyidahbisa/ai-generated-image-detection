@@ -80,7 +80,10 @@ def main():
             img = Image.open(BytesIO(response.content)).convert("RGB")
         except:
             st.error("The URL is not valid.")
-    
+            
+    if img is not None:
+        img_array = preprocess_image(img)
+
     Generate_pred = st.button("Generate Prediction")
     if Generate_pred:
         try:
