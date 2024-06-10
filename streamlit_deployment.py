@@ -110,7 +110,7 @@ medium_markdown = f'[Blog]({medium_url})'
 # Text display
 st.sidebar.subheader('Sayyidah Amalia Rokhimah')
 st.sidebar.markdown(f"{linkedin_markdown} | {github_markdown} | {medium_markdown}", unsafe_allow_html=True)
-st.sidebar.write('dvdhartsman@gmail.com')
+st.sidebar.write('sayyidahbisabikin@gmail.com')
         
 if __name__ == '__main__':
     main()
