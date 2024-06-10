@@ -59,7 +59,7 @@ def main():
         unsafe_allow_html=True)
 
     st.markdown(
-        "<h4 style='text-align: center; color: #ff6f61; text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.07);'>Do you have an image that you can't identify? Our model can correctly identify! Try it Now</h4><br>", 
+        "<h3 style='text-align: center; color: #ff6f61; text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.07);'>🎨 AI Image Generated Detection</h3><br>", 
         unsafe_allow_html=True)
 
     upload_tab, url_tab = st.tabs(["Upload", "Image URL"])
@@ -72,6 +72,7 @@ def main():
             st.warning("To use the file uploader, remove the image URL first.")
 
     with url_tab:
+
         url = st.text_input("Image URL", key="image_url")
     
     if url != "":
@@ -80,35 +81,17 @@ def main():
             img = Image.open(BytesIO(response.content)).convert("RGB")
         except:
             st.error("The URL is not valid.")
-            
+                
     if img is not None:
         img_array = preprocess_image(img)
-
+    
     Generate_pred = st.button("Generate Prediction")
     if Generate_pred:
         try:
-            prediction = model.predict(img).argmax()
+            prediction = model.predict(img_array).argmax()
             st.title("Predicted Label for the image is {}".format(map_dict[prediction]))
         except Exception as e:
             st.error(f"An error occurred during prediction: {e}")
-
-# Sidebar - Bio info
-st.sidebar.title('About Me:')
-
-# Variables for f-strings
-linkedin_url = "https://www.linkedin.com/in/sayyidah-amalia-rokhimah/"
-github_url = "https://github.com/sayyidahbisa"
-medium_url = "https://medium.com/@sayyidah"
-
-linkedin_markdown = f'[LinkedIn]({linkedin_url})'
-github_markdown = f'[GitHub]({github_url})'
-medium_markdown = f'[Blog]({medium_url})'
-
-# Text display
-st.sidebar.subheader('Sayyidah Amalia Rokhimah')
-st.sidebar.markdown(f"{linkedin_markdown} | {github_markdown} | {medium_markdown}", unsafe_allow_html=True)
-st.sidebar.write('sayyidahbisabikin@gmail.com')
-                         
         
 if __name__ == '__main__':
     main()
