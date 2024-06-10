@@ -59,7 +59,7 @@ def main():
         unsafe_allow_html=True)
 
     st.markdown(
-        "<h5 style='text-align: center; color: #ff6f61; text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.07);'>🎨 AI Image Generated Detection</h5><br>", 
+        "<br><h5 style='text-align: center; color: #ff6f61; text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.07);'>🎨 AI Image Generated Detection</h5><br>", 
         unsafe_allow_html=True)
 
     upload_tab, url_tab = st.tabs(["Upload", "Image URL"])
