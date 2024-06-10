@@ -83,8 +83,8 @@ def main():
             st.error("The URL is not valid.")
                 
     if img is not None:
-        img_array = preprocess_image(img)
-        imag = Image.open(img_file)
+        image_array = preprocess_image(img)
+        img = Image.open(img_file)
         st.image(image, caption="Uploaded Image.")
     
         # Preprocess the image
