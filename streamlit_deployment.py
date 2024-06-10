@@ -72,7 +72,6 @@ def main():
             st.warning("To use the file uploader, remove the image URL first.")
 
     with url_tab:
-
         url = st.text_input("Image URL", key="image_url")
     
     if url != "":
@@ -81,14 +80,6 @@ def main():
             img = Image.open(BytesIO(response.content)).convert("RGB")
         except:
             st.error("The URL is not valid.")
-                
-    if img is not None:
-        image_array = preprocess_image(img)
-        img = Image.open(img_file)
-        st.image(image, caption="Uploaded Image.")
-    
-        # Preprocess the image
-        input_data = format_image(img_file)
     
     Generate_pred = st.button("Generate Prediction")
     if Generate_pred:
