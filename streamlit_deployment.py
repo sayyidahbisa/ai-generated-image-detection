@@ -85,7 +85,6 @@ def main():
     if img is not None:
         img_array = preprocess_image(img)
         img_array = Image.open(img_file)
-        st.image(img, caption="Uploaded Image.")
     
     Generate_pred = st.button("Generate Prediction")
     if Generate_pred:
