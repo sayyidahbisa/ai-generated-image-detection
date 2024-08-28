@@ -1,0 +1,41 @@
+Last login: Sun Jun  9 11:10:44 on ttys000
+sayyidahamaliarokhimah@Sayyidahs-MacBook-Air ~ % pip
+zsh: command not found: pip
+sayyidahamaliarokhimah@Sayyidahs-MacBook-Air ~ % pip3 -V
+pip 21.1.1 from /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pip (python 3.8)
+sayyidahamaliarokhimah@Sayyidahs-MacBook-Air ~ % pip3 install nltk
+Requirement already satisfied: nltk in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (3.8.1)
+Requirement already satisfied: regex>=2021.8.3 in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from nltk) (2024.5.15)
+Requirement already satisfied: tqdm in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from nltk) (4.66.4)
+Requirement already satisfied: joblib in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from nltk) (1.4.2)
+Requirement already satisfied: click in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages (from nltk) (8.1.7)
+WARNING: You are using pip version 21.1.1; however, version 24.0 is available.
+You should consider upgrading via the '/Library/Frameworks/Python.framework/Versions/3.8/bin/python3.8 -m pip install --upgrade pip' command.
+sayyidahamaliarokhimah@Sayyidahs-MacBook-Air ~ % nano .zshrc
+
+
+
+  UW PICO 5.09                      File: .zshrc                      Modified  
+
+export PATH=$PATH:/path/to/appium
+
+# Setting PATH for Python 3.5
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Pg   ^K Cut Text  ^C Cur Pos   
+^X Exit      ^J Justify   ^W Where is  ^V Next Pg   ^U UnCut Text^T To Spell  
