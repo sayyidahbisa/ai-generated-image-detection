@@ -16,11 +16,11 @@ from tensorflow.keras.optimizers import Adam
 
 
 st.set_page_config(
-    page_title="AI Generated Image",
-     page_icon="🖼️",
+    page_title="AI Generated Image Detection",
+    page_icon="🖼️",
 )
 
-model = tf.keras.models.load_model("cnn_skfcv_model.h5")
+model = tf.keras.models.load_model('cnn_skfcv_model.h5')
 
 map_dict = {0: 'AI-Generated Image',
             1: 'Human Made',
