@@ -9,6 +9,7 @@ Original file is located at
 import streamlit as st
 from PIL import Image
 import numpy as np
+import requests
 import tensorflow as tf
 from tensorflow.keras.losses import BinaryCrossentropy
 from tensorflow.keras.optimizers import Adam
@@ -92,7 +93,7 @@ def main():
     Generate_pred = st.button("Generate Prediction")
     if Generate_pred:
         try:
-            prediction = model.predict(img_array).argmax()
+            prediction = round(model.predict(img_array)[0][0])
             st.title("Predicted Label for the image is {}".format(map_dict[prediction]))
         except Exception as e:
             st.error(f"An error occurred during prediction: {e}")
