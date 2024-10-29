@@ -11,6 +11,8 @@ from PIL import Image
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.losses import BinaryCrossentropy
+from tensorflow.keras.optimizers import Adam
+
 
 st.set_page_config(
     page_title="AI Generated Image",
