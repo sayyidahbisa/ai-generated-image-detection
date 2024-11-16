@@ -23,7 +23,7 @@ Features
 
 ## Results
 CNN Only
-<img width="901" alt="image" src="https://github.com/user-attachments/assets/79cc7ea1-94b2-4b0a-aa83-43c75f6cf6b5">
+![image](https://github.com/user-attachments/assets/074701b4-2cf6-4c96-9980-40b56ad707e8)
 
 CNN + SKFCV
 ![image](https://github.com/user-attachments/assets/cb766c6a-08c2-495a-b5bd-2f5aeb3ec620)
