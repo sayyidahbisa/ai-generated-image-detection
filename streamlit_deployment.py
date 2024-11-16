@@ -146,8 +146,14 @@ def main():
 
 
 
-st.sidebar.title('About Project:')
-st.sidebar.write("This project focused on detecting and classifying AI-generated and human-created images using a Convolutional Neural Network (CNN). The project employs Stratified K-Fold Cross-Validation (SKFCV) to improve model evaluation and reduce overfitting.")
+st.sidebar.title('About Project')
+st.sidebar.write("This project focused on detecting and classifying AI-Generated and Muman-Made images using a CNN. The project employs Stratified K-Fold Cross-Validation (SKFCV) to improve model evaluation and reduce overfitting.")
+
+st.sidebar.subheader('More About This Project')
+notebook_url = "https://colab.research.google.com/drive/12QHrg2vToyw0KzcQ1lY8UrxMF92wIGYu?usp=sharing"
+dataset_url = "https://www.kaggle.com/datasets/macayanpioloc/ai-generated-and-human-made-painting/data"
+st.sidebar.markdown(f"{notebook_markdown}", unsafe_allow_html=True)
+st.sidebar.markdown(f"{dataset_markdown}", unsafe_allow_html=True)
 
 # Sidebar - Bio info
 st.sidebar.title('About Me:')
