@@ -139,7 +139,7 @@ def main():
         st.image(img, caption="Uploaded Image.")
     
         # Preprocess the image
-        input_data = format_image(img_file)
+        input_data = preprocess_image(img_file)
     
         # Add a "Detect" button
         if st.button("Predict Species"):
