@@ -23,13 +23,18 @@ map_dict = {0: 'AI-Generated Image',
             1: 'Human Made',
             }
 
-def preprocess_image(image):
-    """Preprocess the image to the format required by the model"""
-    resized = image.resize((224, 224))  # Resize the image to the input shape expected by the model
-    image_array = np.array(resized)  # Convert image to numpy array
-    image_array = image_array / 255.0  # Normalize pixel values
-    image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
-    return image_array
+def format_image(img_path):
+    try:
+        # Read the image in as numeric data
+        img = mpimg.imread(img_path)
+        # Resize the data to conform with the expected format
+        resized_image = tf.image.resize(img, (224,224))
+        # Return the image
+        return resized_image
+    except Exception as e:
+        # Streamlit warning about non-conforming data
+        st.warning("Please upload a valid image.")
+        return None
 
 def main():
     img = None
@@ -134,12 +139,12 @@ def main():
                 
     if img is not None:
         # Display the uploaded image
-        img_array = preprocess_image(img)
+        img_array = format_image(img)
         img = Image.open(img_file)
         st.image(img, caption="Uploaded Image.")
     
         # Preprocess the image
-        input_data = preprocess_image(img_file)
+        input_data = format_image(img_file)
     
         # Add a "Detect" button
         if st.button("Predict Species"):
