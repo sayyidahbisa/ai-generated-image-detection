@@ -109,18 +109,32 @@ def main():
         except:
             st.error("The URL is not valid.")
                 
-    if img is not None:
-        img_array = preprocess_image(img)
-        img = Image.open(img_file)
-        st.image(img, caption="Uploaded Image.")
+    if uploaded_file is not None:
+        # Display the uploaded image
+        image = Image.open(uploaded_file)
+        st.image(image, caption="Uploaded Image.")
     
-    Generate_pred = st.button("Generate Prediction")
-    if Generate_pred:
-        try:
-            prediction = round(model.predict(img_array)[0][0])
-            st.title("Predicted Label for the image is {}".format(map_dict[prediction]))
-        except Exception as e:
-            st.error(f"An error occurred during prediction: {e}")
+        # Preprocess the image
+        input_data = format_image(uploaded_file)
+    
+        # Add a "Detect" button
+        if st.button("Predict Species"):
+            
+            # Display the spinner while processing
+            with st.spinner("Identifying your Image..."):
+                # Simulate model processing time (replace with your actual detection logic)
+                time.sleep(2)
+                
+                # Make predictions
+                predictions = get_prediction(input_data)
+    
+                # Check if predictions is not None
+                if predictions is not None:
+                    # Display the predictions
+                    st.write("### Results:")
+                    st.write(predictions)
+                else:
+                    st.write("Unable to arrive at a prediction")
 
 # Sidebar - Bio info
 st.sidebar.title('About Me:')
