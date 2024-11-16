@@ -23,27 +23,13 @@ map_dict = {0: 'AI-Generated Image',
             1: 'Human Made',
             }
 
-def format_image(img_path):
-    try:
-        # Read the image in as numeric data
-        img = mpimg.imread(img_path)
-        # Resize the data to conform with the expected format
-        resized_image = tf.image.resize(img, (224,224))
-        # Return the image
-        return resized_image
-    except Exception as e:
-        # Streamlit warning about non-conforming data
-        st.warning("Please upload a valid image.")
-        return None
-
-def get_prediction(resized_image):
-    # Handle the expectation of batch-size
-    y_pred = model.predict(np.expand_dims(resized_image, 0))
-    # Find the maximum value of the 525 class predictions
-    pred_class = np.argmax(y_pred[0])
-    # Access the predicted bird name
-    class_name = classes[pred_class]
-    return class_name.title()
+def preprocess_image(image):
+    """Preprocess the image to the format required by the model"""
+    resized = image.resize((224, 224))  # Resize the image to the input shape expected by the model
+    image_array = np.array(resized)  # Convert image to numpy array
+    image_array = image_array / 255.0  # Normalize pixel values
+    image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
+    return image_array
 
 def main():
     img = None
@@ -145,34 +131,20 @@ def main():
         except:
             st.error("The URL is not valid.")
 
-                
     if img is not None:
-        # Display the uploaded image
-        img_array = format_image(img)
+        img_array = preprocess_image(img)
         img = Image.open(img_file)
         st.image(img, caption="Uploaded Image.")
-    
-        # Preprocess the image
-        input_data = format_image(img_file)
-    
-        # Add a "Detect" button
-        if st.button("Predict Species"):
-            
-            # Display the spinner while processing
-            with st.spinner("Identifying your Image..."):
-                # Simulate model processing time (replace with your actual detection logic)
-                time.sleep(2)
-                
-                # Make predictions
-                predictions = get_prediction(input_data)
-    
-                # Check if predictions is not None
-                if predictions is not None:
-                    # Display the predictions
-                    st.write("### Results:")
-                    st.write(predictions)
-                else:
-                    st.write("Unable to arrive at a prediction")
+
+    Generate_pred = st.button("Generate Prediction")
+    if Generate_pred:
+        try:
+            prediction = round(model.predict(img_array)[0][0])
+            st.write("Predicted Label for the image is {}".format(map_dict[prediction]))
+        except Exception as e:
+            st.error(f"An error occurred during prediction: {e}")
+
+
 
 # Sidebar - Bio info
 st.sidebar.title('About Me:')
