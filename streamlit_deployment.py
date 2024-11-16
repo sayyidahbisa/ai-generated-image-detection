@@ -130,14 +130,16 @@ def main():
             img = Image.open(BytesIO(response.content)).convert("RGB")
         except:
             st.error("The URL is not valid.")
+
                 
-    if upload_tab is not None:
+    if img is not None:
         # Display the uploaded image
-        image = Image.open(upload_tab)
-        st.image(image, caption="Uploaded Image.")
+        img_array = preprocess_image(img)
+        img = Image.open(img_file)
+        st.image(img, caption="Uploaded Image.")
     
         # Preprocess the image
-        input_data = format_image(upload_tab)
+        input_data = format_image(img_file)
     
         # Add a "Detect" button
         if st.button("Predict Species"):
