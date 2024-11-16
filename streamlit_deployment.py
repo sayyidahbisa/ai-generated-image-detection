@@ -140,11 +140,14 @@ def main():
     if Generate_pred:
         try:
             prediction = round(model.predict(img_array)[0][0])
-            st.subheader("Predicted Label for the image is {}/".format(map_dict[prediction]))
+            st.subheader("Your Image Predicted as {}".format(map_dict[prediction]))
         except Exception as e:
             st.error(f"An error occurred during prediction: {e}")
 
 
+
+st.sidebar.title('About Project:')
+st.write("This project focused on detecting and classifying AI-generated and human-created images using a Convolutional Neural Network (CNN). The project employs Stratified K-Fold Cross-Validation (SKFCV) to improve model evaluation and reduce overfitting.")
 
 # Sidebar - Bio info
 st.sidebar.title('About Me:')
