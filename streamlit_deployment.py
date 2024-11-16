@@ -140,9 +140,7 @@ def main():
     if Generate_pred:
         try:
             prediction = round(model.predict(img_array)[0][0])
-            st.markdown(
-                "<h3>Predicted Label for the image is {}/<h3>".format(map_dict[prediction],
-                unsafe_allow_html=True))
+            st.subheader("Predicted Label for the image is {}/".format(map_dict[prediction]))
         except Exception as e:
             st.error(f"An error occurred during prediction: {e}")
 
