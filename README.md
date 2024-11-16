@@ -1,6 +1,5 @@
 # AI-Generated-Detections
 ```
-
 ```
 This repository contains a project focused on detecting and classifying AI-generated and human-created images using a Convolutional Neural Network (CNN). The project employs Stratified K-Fold Cross-Validation (SKFCV) to improve model evaluation and reduce overfitting.
 
@@ -15,19 +14,3 @@ Key Objectives:
 - Compare performance of models trained with and without SKFCV.
 - Experiment with data augmentation techniques.
 - Evaluate the model using metrics like Precision, Recall, F1-Score, and ROC AUC.
-
-
-## Demo App
-
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ml-model-builder-template.streamlit.app/)
-
-## Section Heading
-
-This is filler text, please replace this with text for this section.
-
-## Further Reading
-
-This is filler text, please replace this with a explanatory text about further relevant resources for this repo
-- Resource 1
-- Resource 2
-- Resource 3
