@@ -84,8 +84,8 @@ def main():
     results_mapping = {
         1: "AI Generated",
         2: "Human Made",
-        3: "Human Made",
-        4: "AI Generated"
+        3: "AI Generated",
+        4: "Human Made"
     }
 
     # Display each image in a column with a "Detect" button underneath
