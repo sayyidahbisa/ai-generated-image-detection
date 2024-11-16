@@ -147,7 +147,7 @@ def main():
 
 
 st.sidebar.title('About Project:')
-st.write("This project focused on detecting and classifying AI-generated and human-created images using a Convolutional Neural Network (CNN). The project employs Stratified K-Fold Cross-Validation (SKFCV) to improve model evaluation and reduce overfitting.")
+st.sidebar.write("This project focused on detecting and classifying AI-generated and human-created images using a Convolutional Neural Network (CNN). The project employs Stratified K-Fold Cross-Validation (SKFCV) to improve model evaluation and reduce overfitting.")
 
 # Sidebar - Bio info
 st.sidebar.title('About Me:')
