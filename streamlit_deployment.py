@@ -55,6 +55,8 @@ def main():
     st.markdown(
         "<h1 class='rounded-heading'>AI Generated Detection</h1>", 
         unsafe_allow_html=True)
+
+    st.markdown("---")
     
     # Test out some of our images
     st.subheader("Give it a try!")
