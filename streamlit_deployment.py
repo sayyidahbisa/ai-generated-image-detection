@@ -36,6 +36,15 @@ def format_image(img_path):
         st.warning("Please upload a valid image.")
         return None
 
+def get_prediction(resized_image):
+    # Handle the expectation of batch-size
+    y_pred = model.predict(np.expand_dims(resized_image, 0))
+    # Find the maximum value of the 525 class predictions
+    pred_class = np.argmax(y_pred[0])
+    # Access the predicted bird name
+    class_name = classes[pred_class]
+    return class_name.title()
+
 def main():
     img = None
 
