@@ -61,10 +61,57 @@ def main():
         "<h1 class='rounded-heading'>AI Generated Detection</h1>", 
         unsafe_allow_html=True)
 
-    st.markdown(
-        "<br><h5 style='text-align: center; color: #ff6f61; text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.07);'>🎨 AI Image Generated Detection</h5><br>", 
-        unsafe_allow_html=True)
+     # Insert a line or divider
+    st.markdown("---")
+    
+    # Test out some of our images
+    st.subheader("Give it a try!")
+    
+    # Load your Bird images (replace these paths with your actual file paths)
+    image_paths = [".streamlit/AI_Generated_1.jpg", ".streamlit/Human_Made_1.jpg", ".streamlit/AI_Generated_2.jpg", ".streamlit/Human_Made_2.jpg"]
 
+    # Function to resize the image to a specified width and height -> for display purposes only
+    def resize_image(image_path, width, height):
+        image = Image.open(image_path)
+        resized_image = image.resize((width, height))
+        return resized_image
+    
+    # Specify the width and height for resizing
+    image_width = 400
+    image_height = 400
+    
+    # Use st.columns to create columns corresponding to the number of images we have uploaded for trial
+    columns = st.columns(len(image_paths))
+    
+    # Mapping of image indices to results
+    results_mapping = {
+        1: "AI Generated",
+        2: "Human Made",
+        3: "Human Made",
+        4: "AI Generated"
+    }
+
+    # Display each image in a column with a "Detect" button underneath
+    for idx, (column, image_path) in enumerate(zip(columns, image_paths)):
+        # Resize the image
+        resized_image = resize_image(image_path, image_width, image_height)
+        
+        # Display the resized image with the specified width and center it
+        column.image(resized_image, caption=f"Bird Image {idx + 1}", use_column_width=True)
+        
+        # Add a "Detect" button centered below the image
+        if column.button(f"Detect Image {idx + 1}"):
+            # Display the spinner animation while processing
+            with st.spinner(f"Results are loading for image {idx + 1}..."):
+                # Simulate model processing time (replace with your actual detection logic)
+                time.sleep(1)
+        
+                # Your detection logic goes here
+                result = results_mapping.get(idx + 1, "Prediction Error")  
+        
+                # Display the result
+                column.write(f"{result}")
+    
     upload_tab, url_tab = st.tabs(["Upload", "Image URL"])
     with upload_tab:
 
