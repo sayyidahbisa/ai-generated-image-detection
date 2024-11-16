@@ -149,16 +149,19 @@ def main():
 st.sidebar.title('About Project')
 st.sidebar.write("This project focused on detecting and classifying AI-Generated and Muman-Made images using a CNN. The project employs Stratified K-Fold Cross-Validation (SKFCV) to improve model evaluation and reduce overfitting.")
 
+# Sidebar - Project More Info
 st.sidebar.subheader('More About This Project')
 notebook_url = "https://colab.research.google.com/drive/12QHrg2vToyw0KzcQ1lY8UrxMF92wIGYu?usp=sharing"
 dataset_url = "https://www.kaggle.com/datasets/macayanpioloc/ai-generated-and-human-made-painting/data"
+
+notebook_markdown = f'[Notebook]({notebook_url})'
+dataset_markdown = f'[Dataset]({dataset_url})'
+
 st.sidebar.markdown(f"{notebook_markdown}", unsafe_allow_html=True)
 st.sidebar.markdown(f"{dataset_markdown}", unsafe_allow_html=True)
 
 # Sidebar - Bio info
 st.sidebar.title('About Me:')
-
-# Variables for f-strings
 linkedin_url = "https://www.linkedin.com/in/sayyidah-amalia-rokhimah/"
 github_url = "https://github.com/sayyidahbisa"
 medium_url = "https://medium.com/@sayyidah"
@@ -167,7 +170,6 @@ linkedin_markdown = f'[LinkedIn]({linkedin_url})'
 github_markdown = f'[GitHub]({github_url})'
 medium_markdown = f'[Blog]({medium_url})'
 
-# Text display
 st.sidebar.subheader('Sayyidah Amalia Rokhimah')
 st.sidebar.markdown(f"{linkedin_markdown} | {github_markdown} | {medium_markdown}", unsafe_allow_html=True)
 st.sidebar.write('sayyidahbisabikin@gmail.com')
