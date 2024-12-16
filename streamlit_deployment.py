@@ -92,7 +92,7 @@ def main():
         resized_image = resize_image(image_path, image_width, image_height)
         
         # Display the resized image with the specified width and center it
-        column.image(resized_image, caption=f"Image {idx + 1}", use_column_width=True)
+        column.image(resized_image, caption=f"Image {idx + 1}", use_container_width=True)
         
         # Add a "Detect" button centered below the image
         if column.button(f"Detect Image {idx + 1}"):
